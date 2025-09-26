@@ -1,0 +1,63 @@
+# ======== terraform.tfvars (example) ========
+# Global
+location = "eastus"
+tags = {
+  env   = "dev"
+  owner = "platform-team"
+}
+
+# Toggles
+build_resource_group = "yes"
+build_acr            = "yes"
+build_key_vault      = "yes"
+build_log_analytics  = "yes"
+build_vm             = "no"   # requires an existing subnet_id; flip to "yes" and set vm_subnet_id to use
+build_servicebus     = "yes"
+build_app_service    = "yes"
+build_storage        = "yes"
+
+# Resource Group
+rg_name = "rg-core-dev"
+
+# ACR
+acr_name          = "acrcoredev1234"   # must be globally unique & lowercase
+acr_sku           = "Premium"
+acr_admin_enabled = false
+
+# Key Vault
+kv_name                        = "kv-core-dev-001"
+kv_sku                         = "standard"
+kv_purge_protection            = true
+kv_soft_delete_retention_days  = 7
+
+# Log Analytics
+log_analytics_name          = "law-core-dev"
+log_analytics_sku           = "PerGB2018"
+log_analytics_retention_days= 30
+
+# VM (Linux)
+vm_name            = "vm-core-dev-01"
+vm_admin_user      = "azureuser"
+vm_ssh_public_key  = "ssh-rsa AAAAB3... user@host"
+vm_size            = "Standard_DS2_v2"
+vm_os_disk_size_gb = 64
+vm_subnet_id       = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-network/providers/Microsoft.Network/virtualNetworks/vnet-core/subnets/snet-app"
+
+# Service Bus
+sb_namespace_name = "sb-core-dev"
+sb_sku            = "Standard"
+sb_queues         = ["ingress", "egress"]
+
+# App Service
+app_service_plan_name = "asp-core-dev"
+app_service_sku       = "P1v3"
+app_name              = "app-core-dev"
+app_settings = {
+  "WEBSITE_RUN_FROM_PACKAGE" = "1"
+}
+
+# Storage Account
+sa_name            = "sacoredev001"
+sa_tier            = "Standard"
+sa_replication     = "GRS"
+storage_containers = ["content", "logs"]
