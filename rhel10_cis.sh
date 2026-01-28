@@ -185,3 +185,12 @@ log "Rollback disarmed"
 log "CIS Ansible run completed successfully"
 log "Log: $LOG"
 log "Ansible output: $ANSIBLE_OUT"
+
+
+
+
+
+
+
+sed -i 's/\r$//' rhel10cis.sh
+chmod +x rhel10cis.sh
