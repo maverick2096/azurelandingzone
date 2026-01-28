@@ -179,3 +179,12 @@ log "Rollback disarmed"
 log "CIS run completed"
 log "Ansible output: $ANSIBLE_OUT"
 log "Log file: $LOG"
+
+
+
+
+# --- Disable /tmp hardening (cloud-safe) ---
+rhel10cis_rule_1_1_2: false   # Ensure /tmp is configured
+rhel10cis_rule_1_1_3: false   # nodev on /tmp
+rhel10cis_rule_1_1_4: false   # nosuid on /tmp
+rhel10cis_rule_1_1_5: false   # noexec on /tmp
